@@ -1,43 +1,73 @@
-# Define UI for application that draws a histogram
 fluidPage(
 
-    # Application title
     titlePanel("Bravo Gene Expression Visualization"),
 
-    # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-            DTOutput("chem_input")
+            DTOutput("chem_input") %>% withSpinner(),
+            hr(),
+            DTOutput("pathway_input") %>% withSpinner()
         ),
 
-        # Show a plot of the generated distribution
         mainPanel(
             tabsetPanel(
-                tabPanel("Top Genes",
-                    fluidRow(
-                        column(12, 
-                            plotlyOutput("plot_top"),
-                        )
-                    ),
-                    br(),
-                    hr(),
-                    fluidRow(
-                        column(12, 
-                            DTOutput("dt_top")
+                tabPanel("Gene Expression",
+                    tabsetPanel(
+                        tabPanel("Top Genes",
+                            br(),
+                            fluidRow(
+                                column(12,
+                                    plotlyOutput("plot_top") %>% withSpinner(),
+                                )
+                            ),
+                            br(),
+                            hr(),
+                            fluidRow(
+                                column(12,
+                                    DTOutput("dt_top") %>% withSpinner()
+                                )
+                            )
+                        ),
+                        tabPanel("Bottom Genes",
+                            br(),
+                            fluidRow(
+                                column(12,
+                                    plotlyOutput("plot_bot") %>% withSpinner(),
+                                )
+                            ),
+                            br(),
+                            hr(),
+                            fluidRow(
+                                column(12,
+                                    DTOutput("dt_bot") %>% withSpinner()
+                                )
+                            )
+                        ),
+                        tabPanel("Per-chemical Pathways",
+                            br(),
+                            fluidRow(
+                                column(12, #style="overflow-x:scroll",
+                                    plotlyOutput("plt_pathways_per_chemical") %>% withSpinner()
+                                )
+                            ),
                         )
                     )
                 ),
-                tabPanel("Bottom Genes",
+                tabPanel("Pathways",
+                    br(),
                     fluidRow(
-                        column(12, 
-                            plotlyOutput("plot_bot"),
+                        column(6, style="overflow-x:scroll",
+                            plotlyOutput("plt_pathways") %>% withSpinner()
+                        ),
+                        column(6, style="overflow-x:scroll",
+                            plotlyOutput("plot_pathchem") %>% withSpinner(),
                         )
                     ),
                     br(),
                     hr(),
                     fluidRow(
-                        column(12, 
-                            DTOutput("dt_bot")
+                        column(12,
+                            DTOutput("dt_pathchem") %>% withSpinner()
                         )
                     )
                 )
