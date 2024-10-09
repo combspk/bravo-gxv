@@ -6,7 +6,9 @@ fluidPage(
         sidebarPanel(
             DTOutput("chem_input") %>% withSpinner(),
             hr(),
-            DTOutput("pathway_input") %>% withSpinner()
+            DTOutput("pathway_input") %>% withSpinner(),
+            hr(),
+            HTML("<p>View <a href=\"https://github.com/combspk/bravo-gxv\">GitHub repository</a></p>")
         ),
 
         mainPanel(

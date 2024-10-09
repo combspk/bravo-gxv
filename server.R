@@ -4,7 +4,6 @@ function(input, output, session) {
 
     # Init plots
     plot_empty_chem_genes <- plotly_empty(type="scatter", mode="markers") %>%
-        config(displayModeBar=FALSE) %>%
         layout(
             title=list(
                 text="Select a chemical from the list on the left to view associated genes.",
@@ -13,7 +12,6 @@ function(input, output, session) {
             )
         )
     plot_empty_chem_pathways <- plotly_empty(type="scatter", mode="markers") %>%
-        config(displayModeBar=FALSE) %>%
         layout(
             title=list(
                 text="Select a chemical from the list on the left to view associated pathways.",
@@ -26,7 +24,6 @@ function(input, output, session) {
     output$plt_pathways_per_chemical <- renderPlotly(plot_empty_chem_pathways)
 
     plot_empty_pathways <- plotly_empty(type="scatter", mode="markers") %>%
-        config(displayModeBar=FALSE) %>%
         layout(
             title=list(
                 text="Select a chemical and pathway from the lists<br>on the left to view gene expression statistics<br>for the given chemical and pathway.",
@@ -37,7 +34,6 @@ function(input, output, session) {
     output$plt_pathways <- renderPlotly(plot_empty_pathways)
 
     plot_empty_pathway_genes <- plotly_empty(type="scatter", mode="markers") %>%
-        config(displayModeBar=FALSE) %>%
         layout(
             title=list(
                 text="Select a region in the bar graph to the left<br>to view gene expression fold change data<br>for the given chemical and pathway.",
